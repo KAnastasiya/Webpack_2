@@ -1,0 +1,27 @@
+.welcome {
+  --container-width: 800px;
+
+  &__info {
+    height: 280px;
+    padding-top: 115px;
+    background-color: green;
+    position: relative;
+
+    &::after {
+      content: '';
+      width: 100%;
+      height: 200px;
+      background: url(img/bg.png) no-repeat calc(400px / var(--container-width) * 100%);
+      background-size: contain;
+      position: absolute;
+      bottom: calc(-40px / var(--container-width) * 100%);
+    }
+  }
+}
+
+.twitter-logo {
+  width: 50px;
+  height: 50px;
+  background: url(./icon/twitter.svg) no-repeat;
+  background-size: contain;
+}

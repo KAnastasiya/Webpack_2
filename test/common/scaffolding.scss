@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  padding: (20px / 800px) * 100%;
+  margin: 0 auto;
+  max-width: 800px;
+  position: relative;
+}
+
+.container--column {
+  flex-direction: column;
+}
+
+ul {
+  font-size: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+p {
+  line-height: 1.4;
+  text-align: justify;
+  padding: 0;
+  margin: 0;
+}
