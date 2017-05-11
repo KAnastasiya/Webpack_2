@@ -11,7 +11,7 @@ Configuration for Webpack 2
 
 ### Development mode
 
-Run `npm run dev` in catalog with source code (to produce development version and run a watcher at localhost:8080)*.
+Run `npm run dev` in catalog with source code.
 
 
 ### Production mode
