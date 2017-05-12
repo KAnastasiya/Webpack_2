@@ -38,9 +38,13 @@ const common = webpackMerge([
       new webpack.DefinePlugin({
         NODE_ENV: JSON.stringify(NODE_ENV),
       }),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'common',
+        minChunks: 2,
+      }),
       new WebpackHtml({
         filename: 'index.html',
-        chunks: ['index'],
+        chunks: ['index', 'common'],
         template: './index.pug',
       }),
       new ExtractText({
@@ -70,21 +74,7 @@ module.exports = () => {
         minimize: true,
         debug: false,
       }),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          collapse_vars: true,
-          comparisons: true,
-          conditionals: true,
-          dead_code: true,
-          drop_console: true,
-          drop_debugger: true,
-          evaluate: true,
-          if_return: true,
-          join_vars: true,
-          sequences: true,
-          unused: true,
-        },
-      }));
+      new webpack.optimize.UglifyJsPlugin());
     return common;
   }
 
