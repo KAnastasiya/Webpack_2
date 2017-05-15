@@ -14,6 +14,8 @@ const svg = require('./webpack/svg');
 const eslint = require('./webpack/eslint');
 const devServer = require('./webpack/devserver');
 
+const uglifyJS = require('./webpack/uglifyjs');
+
 const path = require('path');
 
 const PATHS = {
@@ -38,6 +40,9 @@ const common = webpackMerge([
       new webpack.DefinePlugin({
         NODE_ENV: JSON.stringify(NODE_ENV),
       }),
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+      }),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'common',
         minChunks: 2,
@@ -48,6 +53,7 @@ const common = webpackMerge([
         template: './index.pug',
       }),
       new ExtractText({
+        publicPath: './',
         filename: 'style.css',
         allChunks: true,
       }),
@@ -69,13 +75,10 @@ const dev = webpackMerge([
 
 module.exports = () => {
   if (NODE_ENV === 'prod') {
-    common.plugins.push(
-      new webpack.LoaderOptionsPlugin({
-        minimize: true,
-        debug: false,
-      }),
-      new webpack.optimize.UglifyJsPlugin());
-    return common;
+    return webpackMerge([
+      common,
+      uglifyJS(),
+    ]);
   }
 
   common.plugins.push(

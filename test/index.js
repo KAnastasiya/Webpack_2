@@ -11,4 +11,6 @@ if (NODE_ENV === 'dev') {
   const world = () => 'world';
   const s = `${hello()}, ${world()}`;
   console.log(s);
+
+  console.log($);
 }
