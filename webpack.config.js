@@ -1,22 +1,28 @@
-const webpack = require('webpack');
-const WebpackHtml = require('html-webpack-plugin');
-const ExtractText = require('extract-text-webpack-plugin');
-const StyleLint = require('stylelint-webpack-plugin');
-const SpriteLoader = require('svg-sprite-loader/plugin');
+const path = require('path');
 const webpackMerge = require('webpack-merge');
+const ExtractText = require('extract-text-webpack-plugin');
 
-const babel = require('./webpack/babel');
-const pug = require('./webpack/pug');
-const css = require('./webpack/css');
-const scss = require('./webpack/scss');
-const url = require('./webpack/url');
-const svg = require('./webpack/svg');
-const eslint = require('./webpack/eslint');
+const babelLoader = require('./webpack/loaders/babel');
+const pugLoader = require('./webpack/loaders/pug');
+const cssLoader = require('./webpack/loaders/css');
+const scssLoader = require('./webpack/loaders/scss');
+const imgLoader = require('./webpack/loaders/img');
+const svgLoader = require('./webpack/loaders/svg');
+const eslintLoader = require('./webpack/loaders/eslint');
+
+const htmlPlugin = require('./webpack/plugins/Html');
+const providePlugin = require('./webpack/plugins/Provide');
+const definePlugin = require('./webpack/plugins/Define');
+const extractTextPlugin = require('./webpack/plugins/ExtractText');
+const commonChunkPlugin = require('./webpack/plugins/CommonsChunk');
+const noEmitOnErrorsPlugin = require('./webpack/plugins/NoEmitOnErrors');
+const spriteLoaderPlugin = require('./webpack/plugins/SpriteLoader');
+const uglifyJSPlugin = require('./webpack/plugins/UglifyJs');
+const styleLintPlugin = require('./webpack/plugins/Stylelint');
+const hotModuleReplacementPlugin = require('./webpack/plugins/HotModuleReplacement');
+
 const devServer = require('./webpack/devserver');
 
-const uglifyJS = require('./webpack/uglifyjs');
-
-const path = require('path');
 
 const PATHS = {
   source: path.resolve(__dirname, 'test'),
@@ -25,68 +31,48 @@ const PATHS = {
 
 const NODE_ENV = process.env.NODE_ENV || 'dev';
 
+
 const common = webpackMerge([
   {
     context: PATHS.source,
-    entry: {
-      index: './index.js',
-    },
+    entry: { index: './index.js' },
     output: {
       path: PATHS.build,
       filename: '[name].js',
     },
-    plugins: [
-      new webpack.NoEmitOnErrorsPlugin(),
-      new webpack.DefinePlugin({
-        NODE_ENV: JSON.stringify(NODE_ENV),
-      }),
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'common',
-        minChunks: 2,
-      }),
-      new WebpackHtml({
-        filename: 'index.html',
-        chunks: ['index', 'common'],
-        template: './index.pug',
-      }),
-      new ExtractText({
-        publicPath: './',
-        filename: 'style.css',
-        allChunks: true,
-      }),
-      new SpriteLoader(),
-    ],
   },
-  svg(),
-  babel(),
-  pug(),
-  css(),
-  scss(ExtractText),
-  url('./img'),
+
+  htmlPlugin(),
+  providePlugin(),
+  definePlugin(NODE_ENV),
+  extractTextPlugin(ExtractText),
+  commonChunkPlugin(),
+  noEmitOnErrorsPlugin(),
+  spriteLoaderPlugin(),
+
+  babelLoader(),
+  pugLoader(),
+  cssLoader(),
+  scssLoader(ExtractText),
+  svgLoader(),
+  imgLoader('./img'),
 ]);
 
-const dev = webpackMerge([
-  { devtool: 'inline-source-map' },
-  eslint(),
-]);
 
 module.exports = () => {
   if (NODE_ENV === 'prod') {
     return webpackMerge([
       common,
-      uglifyJS(),
+      uglifyJSPlugin(),
     ]);
   }
 
-  common.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    new StyleLint({
-      failOnError: false,
-      quiet: false,
-      syntax: 'scss',
-    }));
-  return webpackMerge([common, dev, devServer(PATHS.build)]);
+  return webpackMerge([
+    common,
+    { devtool: 'inline-source-map' },
+    devServer(PATHS.build),
+    eslintLoader(),
+    styleLintPlugin(),
+    hotModuleReplacementPlugin(),
+  ]);
 };
