@@ -1,3 +1,5 @@
+const transformObjectRestSpread = require('babel-plugin-transform-object-rest-spread');
+
 module.exports = function () {
   return {
     module: {
@@ -11,7 +13,7 @@ module.exports = function () {
               ['es2015', { modules: false }],
             ],
             plugins: [
-              require('babel-plugin-transform-object-rest-spread'),
+              transformObjectRestSpread,
             ],
           },
         }],
