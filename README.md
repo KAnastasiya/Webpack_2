@@ -1,6 +1,6 @@
-# Webpack_2
+# Webpack_3
 
-Configuration for Webpack 2
+Configuration for Webpack 3
 
 
 ### Installation
