@@ -20,6 +20,7 @@ const spriteLoaderPlugin = require('./webpack/plugins/SpriteLoader');
 const uglifyJSPlugin = require('./webpack/plugins/UglifyJs');
 const styleLintPlugin = require('./webpack/plugins/Stylelint');
 const hotModuleReplacementPlugin = require('./webpack/plugins/HotModuleReplacement');
+const moduleConcatenation = require('./webpack/plugins/ModuleConcatenation');
 
 const devServer = require('./webpack/devserver');
 
@@ -49,6 +50,7 @@ const common = webpackMerge([
   commonChunkPlugin(),
   noEmitOnErrorsPlugin(),
   spriteLoaderPlugin(),
+  moduleConcatenation(),
 
   babelLoader(),
   pugLoader(),

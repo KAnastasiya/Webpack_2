@@ -1,5 +1,5 @@
 {
-  "name": "WebPack_2",
+  "name": "WebPack_3",
   "author": "Anastasiia Kozenko",
   "version": "1.0.0",
   "description": "",
@@ -15,9 +15,9 @@
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
-    "cross-env": "^4.0.0",
+    "cross-env": "^5.0.1",
     "css-loader": "^0.28.1",
-    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-config-airbnb-base": "^11.2.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-import": "^2.2.0",
     "file-loader": "^0.11.1",
@@ -27,25 +27,27 @@
     "pug-loader": "^2.3.0",
     "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.3",
-    "style-loader": "^0.17.0",
+    "style-loader": "^0.18.2",
     "stylelint": "^7.10.1",
     "stylelint-config-standard": "^16.0.0",
-    "stylelint-order": "^0.4.4",
+    "stylelint-order": "^0.5.0",
     "stylelint-scss": "^1.4.4",
     "svgo-loader": "^1.2.1",
+    "uglify-js": "^3.0.20",
+    "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.8",
-    "webpack-dev-server": "^2.4.5",
+    "webpack-dev-server": "^2.5.0",
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "eslint": "^3.19.0",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "eslint": "^4.1.1",
+    "extract-text-webpack-plugin": "^2.1.2",
     "html-webpack-plugin": "^2.28.0",
     "jquery": "^3.2.1",
     "normalize.css": "^7.0.0",
     "stylelint-webpack-plugin": "^0.7.0",
-    "svg-sprite-loader": "^2.0.5",
-    "webpack": "^2.5.1"
+    "svg-sprite-loader": "^3.0.5",
+    "webpack": "^3.0.0"
   }
 }
