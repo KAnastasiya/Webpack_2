@@ -17,3 +17,8 @@ Run `npm run dev` in catalog with source code.
 ### Production mode
 
 Run `npm run build` in catalog with source code.
+
+
+### To update npm-packages
+
+Run `npm run update:packages` in catalog with source code.
