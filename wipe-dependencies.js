@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const wipeDependencies = () => {
-  const file  = fs.readFileSync('package.json');
+  const file = fs.readFileSync('package.json');
   const content = JSON.parse(file);
 
   for (let devDep in content.devDependencies) {

@@ -22,6 +22,7 @@
     "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
     "no-confusing-arrow": 0,
     "consistent-return": 0,
-    "func-names": [0, "as-needed"]
+    "func-names": [0, "as-needed"],
+    "global-require": 0
   }
 }
