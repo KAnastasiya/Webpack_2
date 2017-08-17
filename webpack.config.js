@@ -23,6 +23,7 @@ const PLUGINS = {
   styleLint: require('./webpack/plugins/Stylelint'),
   hotModuleReplacement: require('./webpack/plugins/HotModuleReplacement'),
   moduleConcatenation: require('./webpack/plugins/ModuleConcatenation'),
+  copyWebpack: require('./webpack/plugins/CopyWebpack'),
 };
 
 const devServer = require('./webpack/devserver');
@@ -39,7 +40,9 @@ const NODE_ENV = process.env.NODE_ENV || 'dev';
 const common = webpackMerge([
   {
     context: PATHS.source,
-    entry: { index: './index.js' },
+    entry: {
+      index: './index.js',
+    },
     output: {
       path: PATHS.build,
       filename: '[name].js',
@@ -54,6 +57,7 @@ const common = webpackMerge([
   PLUGINS.noEmitOnErrors(),
   PLUGINS.spriteLoader(),
   PLUGINS.moduleConcatenation(),
+  PLUGINS.copyWebpack(),
 
   LOADERS.babel(),
   LOADERS.pug(),

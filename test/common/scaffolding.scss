@@ -2,9 +2,9 @@
   display: flex;
   justify-content: space-between;
   width: 90%;
+  max-width: 800px;
   padding: (20px / 800px) * 100%;
   margin: 0 auto;
-  max-width: 800px;
   position: relative;
 }
 
