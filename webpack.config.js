@@ -24,6 +24,7 @@ const PLUGINS = {
   hotModuleReplacement: require('./webpack/plugins/HotModuleReplacement'),
   moduleConcatenation: require('./webpack/plugins/ModuleConcatenation'),
   copyWebpack: require('./webpack/plugins/CopyWebpack'),
+  cleanWebpack: require('./webpack/plugins/CleanWebpack'),
 };
 
 const devServer = require('./webpack/devserver');
@@ -58,6 +59,7 @@ const common = webpackMerge([
   PLUGINS.spriteLoader(),
   PLUGINS.moduleConcatenation(),
   PLUGINS.copyWebpack(),
+  PLUGINS.cleanWebpack(__dirname),
 
   LOADERS.babel(),
   LOADERS.pug(),
