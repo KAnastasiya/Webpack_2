@@ -19,6 +19,16 @@ module.exports = function (ExtractText) {
             options: {
               sourceMap: true,
             },
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                require('autoprefixer')({
+                  browsers: ['> 1%', 'last 2 version'],
+                  cascade: false,
+                }),
+              ],
+            },
           }],
         }),
       }],
