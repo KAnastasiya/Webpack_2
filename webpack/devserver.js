@@ -1,4 +1,4 @@
-module.exports = function (path) {
+module.exports = function(path) {
   return {
     devServer: {
       contentBase: path,

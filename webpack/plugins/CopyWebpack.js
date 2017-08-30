@@ -1,6 +1,6 @@
 const CopyWebpack = require('copy-webpack-plugin');
 
-module.exports = function () {
+module.exports = function() {
   return {
     plugins: [
       new CopyWebpack([

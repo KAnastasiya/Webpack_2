@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 
-module.exports = function (env) {
+module.exports = function(env) {
   return {
     plugins: [
       new webpack.DefinePlugin({

@@ -1,6 +1,6 @@
 const StyleLint = require('stylelint-webpack-plugin');
 
-module.exports = function () {
+module.exports = function() {
   return {
     plugins: [
       new StyleLint({

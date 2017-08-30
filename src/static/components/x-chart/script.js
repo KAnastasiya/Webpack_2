@@ -1,4 +1,4 @@
-(function () {
+(function() {
   const componentDocument = document.currentScript.ownerDocument;
   const componentTemplate = componentDocument.querySelector('template').content;
 
@@ -31,4 +31,4 @@
   };
 
   window.customElements.define('x-chart', window.XChart);
-}());
+})();

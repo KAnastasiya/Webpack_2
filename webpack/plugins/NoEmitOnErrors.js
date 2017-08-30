@@ -1,9 +1,7 @@
 const webpack = require('webpack');
 
-module.exports = function () {
+module.exports = function() {
   return {
-    plugins: [
-      new webpack.NoEmitOnErrorsPlugin(),
-    ],
+    plugins: [new webpack.NoEmitOnErrorsPlugin()],
   };
 };

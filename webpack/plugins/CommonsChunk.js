@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 
-module.exports = function () {
+module.exports = function() {
   return {
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({

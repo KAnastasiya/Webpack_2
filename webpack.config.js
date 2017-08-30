@@ -31,12 +31,11 @@ const devServer = require('./webpack/devserver');
 const ExtractText = require('extract-text-webpack-plugin');
 
 const PATHS = {
-  source: path.resolve(__dirname, 'test'),
+  source: path.resolve(__dirname, 'src'),
   build: path.resolve(__dirname, 'dist'),
 };
 
 const NODE_ENV = process.env.NODE_ENV || 'dev';
-
 
 const common = webpackMerge([
   {
@@ -69,13 +68,9 @@ const common = webpackMerge([
   LOADERS.img('./img'),
 ]);
 
-
 module.exports = () => {
   if (NODE_ENV === 'prod') {
-    return webpackMerge([
-      common,
-      PLUGINS.uglifyJS(),
-    ]);
+    return webpackMerge([common, PLUGINS.uglifyJS()]);
   }
 
   return webpackMerge([

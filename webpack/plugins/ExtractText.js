@@ -1,4 +1,4 @@
-module.exports = function (ExtractText) {
+module.exports = function(ExtractText) {
   return {
     plugins: [
       new ExtractText({
